@@ -1,15 +1,14 @@
-const express = require('express')
+import * as express from 'express'
 const app = express()
-import { DB } from './db/Mongo'
+import { DbHandler } from './db/DbHandler'
 
 // init db
-const db = new DB()
-app.db = db
+const db = new DbHandler()
 db.init()
 
 // init routes
-require('./routes/game')(app)
-require('./routes/user')(app)
+require('./routes/game')(app, db)
+require('./routes/user')(app, db)
 
 // TODO users & stuff
 

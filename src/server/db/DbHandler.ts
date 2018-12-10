@@ -1,6 +1,6 @@
 import { MongoClient, Db, Collection } from 'mongodb'
 
-export class Db {
+export class DbHandler {
     client:MongoClient
     db:Db
     players:Collection<any>
