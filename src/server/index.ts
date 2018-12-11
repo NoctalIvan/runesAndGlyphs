@@ -12,6 +12,8 @@ require('./routes/user')(app, db)
 
 // TODO users & stuff
 
+app.use('/', express.static('front/dist'))
+
 app.listen(7946, () => {
   console.log('Example app listening on port 7946!')
 })
