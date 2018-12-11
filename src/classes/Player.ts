@@ -1,5 +1,6 @@
 import { Deck } from "./Deck";
-import { Rune } from "./rune";
+import { Rune } from "./Rune";
+import { IUser } from "../interfaces";
 
 export class Player {
     name:string
@@ -7,17 +8,22 @@ export class Player {
     deck:Deck
     hand:Rune[]
     board:Rune[]
-    graveYard:Rune[]
+    graveyard:Rune[]
 
     hp:number
     mana:number
     maxMana:number
 
-    constructor (name:string, deck:Deck) {
-        this.name = name
+    constructor (user:IUser) {
+        this.name = user.name
+        this.deck = new Deck(user.decks[user.activeDeckIndex])
+        
         this.hp = 10
         this.mana = 0
         this.maxMana = 0
+        this.hand = []
+        this.board = []
+        this.graveyard = []
     }
 
     shuffle():void {

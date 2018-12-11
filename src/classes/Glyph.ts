@@ -1,7 +1,11 @@
 export class Glyph {
     name:string
 
-    constructor (name:string) {
-        this.name = name
+    constructor (glyph:ISerializedGlyph) {
+        this.name = glyph.name
     }
+}
+
+export interface ISerializedGlyph {
+    name: string
 }

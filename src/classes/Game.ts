@@ -2,16 +2,16 @@ import { Player } from "./Player";
 import { TurnPhase } from "../enums";
 
 export class Game {
-    id:number
+    id:string
     turn:number
     playerTurn:number
     turnPhase:TurnPhase
     players:Player[]
 
-    constructor (id:number) {
+    constructor (id:string, player1:Player, player2:Player) {
         this.id = id
         this.turn = 0
-        this.playerTurn = 0
+        this.playerTurn = +(Math.random() > 0.5)
         this.turnPhase = TurnPhase.DRAW
 
         this.players.forEach(player => {

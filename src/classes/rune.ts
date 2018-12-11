@@ -1,23 +1,23 @@
-import { Glyph } from "./Glyph";
+import { Glyph, ISerializedGlyph } from "./Glyph";
 
 export class Rune {
-    public name:string
-    public hp:number
-    public maxHp:number
-    public atk:number
-    public cost:number
-    public attackCount:number
-    // public type
-    // public element
-    public glyphs:Glyph[]
+    _id:string
+    name:string
+    hp:number
+    maxHp:number
+    atk:number
+    cost:number
+    attackCount:number
+    glyphs:Glyph[]
 
-    constructor(name:string, atk: number, hp:number, cost:number, glyphs) {
-        this.name = name
-        this.hp = hp
-        this.maxHp = hp
-        this.atk = atk
-        this.cost = cost
-        this.glyphs = glyphs
+    constructor(rune:ISerializedRune) {
+        this._id = rune._id
+        this.name = rune.name
+        this.hp = rune.hp
+        this.maxHp = rune.hp
+        this.atk = rune.atk
+        this.cost = rune.cost
+        this.glyphs = rune.glyphs.map(glyph => new Glyph(glyph))
         this.attackCount = 0
     }
 
@@ -46,4 +46,13 @@ export class Rune {
         this.hp -= damage
         return this.hp <= 0
     }
+}
+
+export interface ISerializedRune {
+    _id:string
+    name:string
+    atk:number
+    hp:number
+    cost:number
+    glyphs:ISerializedGlyph[]
 }
